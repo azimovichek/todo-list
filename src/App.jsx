@@ -51,22 +51,22 @@ function App() {
         {tasks.map((task, index) => (
           <li key={index}>
             {editIndex === index ? (
-              <>
+              <span>
                 <input
                   type="text"
                   value={editText}
                   onChange={(e) => setEditText(e.target.value)}
                 />
                 <button onClick={() => saveEdit(index)}>Сохранить</button>
-              </>
+              </span>
             ) : (
-              <>
+              <span>
                 {task}
                 <button onClick={() => startEdit(index, task)}>
                   Редактировать
                 </button>
                 <button onClick={() => deleteTask(index)}>Удалить</button>
-              </>
+              </span>
             )}
           </li>
         ))}

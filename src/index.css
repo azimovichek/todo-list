@@ -67,10 +67,11 @@ li button, li input[type="text"] {
     box-sizing: border-box;
 }  
 li span {
-    flex: 1; 
-    overflow-wrap: break-word; 
-    white-space: normal; 
-}
+    flex: 1;
+    overflow-wrap: break-word;
+    white-space: normal;
+    max-width: 100%;
+  }
 
 li input[type="text"] {
     width: calc(100% - 100px);
