@@ -65,6 +65,11 @@ li button, li input[type="text"] {
     color: #fff;
     cursor: pointer;
     box-sizing: border-box;
+}  
+li span {
+    flex: 1; 
+    overflow-wrap: break-word; 
+    white-space: normal; 
 }
 
 li input[type="text"] {
