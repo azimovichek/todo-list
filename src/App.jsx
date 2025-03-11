@@ -18,6 +18,11 @@ function App() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addTask();
+  };
+
   const deleteTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
@@ -43,7 +48,11 @@ function App() {
     <div className="bg-black text-white font-sans min-h-screen flex justify-center items-center p-5">
       <div className="bg-[#111] p-5 w-full max-w-[500px] box-border rounded-lg shadow-lg">
         <h1 className="text-blue-500 text-3xl font-bold mb-5">ToDo List</h1>
-        <div className="flex w-full max-w-[500px] mb-5">
+
+        <form
+          onSubmit={handleSubmit}
+          className="flex w-full max-w-[500px] mb-5"
+        >
           <input
             type="text"
             placeholder="Добавить задачу"
@@ -52,12 +61,12 @@ function App() {
             className="flex-1 p-2 border border-blue-500 text-white rounded-l focus:outline-none"
           />
           <button
-            onClick={addTask}
+            type="submit"
             className="p-2 bg-blue-500 text-white border-none rounded-r cursor-pointer hover:bg-blue-600 transition-colors"
           >
             Добавить
           </button>
-        </div>
+        </form>
 
         <ul className="w-full max-w-[500px] space-y-2">
           {tasks.map((task, index) => (
