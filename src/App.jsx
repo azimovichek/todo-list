@@ -35,7 +35,7 @@ function App() {
   };
 
   return (
-    <div className="bg-white text-white font-sans min-h-screen flex justify-center items-center p-5">
+    <div className="bg-black text-white font-sans min-h-screen flex justify-center items-center p-5">
       <div className="bg-[#111] p-5 w-full max-w-[500px] box-border rounded-lg shadow-lg">
         <h1 className="text-blue-500 text-3xl font-bold mb-5">ToDo List</h1>
         <div className="flex w-full max-w-[500px] mb-5">
@@ -66,7 +66,7 @@ function App() {
                     type="text"
                     value={editText}
                     onChange={(e) => setEditText(e.target.value)}
-                    className="flex-1 p-1 border border-blue-500 text-black rounded focus:outline-none"
+                    className="flex-1 p-1 border border-blue-500 text-white rounded focus:outline-none"
                   />
                   <button
                     onClick={() => saveEdit(index)}
