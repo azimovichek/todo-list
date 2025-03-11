@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const initialTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  const [tasks, setTasks] = useState(initialTasks);
   const [newTask, setNewTask] = useState("");
   const [editIndex, setEditIndex] = useState(null);
   const [editText, setEditText] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = () => {
     if (newTask.trim() !== "") {
