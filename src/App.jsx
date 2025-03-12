@@ -135,10 +135,9 @@ function App() {
         </div>
       </div>
 
-      {/* Маршруты */}
       <Routes>
         <Route
-          path="/task/:taskId" // Маршрут для страницы с деталями задачи
+          path="/task/:taskId"
           element={<TaskDetail tasks={tasks} onSaveEdit={handleSaveEdit} />}
         />
       </Routes>
