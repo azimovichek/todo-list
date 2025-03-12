@@ -68,7 +68,7 @@ function App() {
           </button>
         </form>
 
-        <ul className="w-full max-w-[500px] space-y-2">
+        <ul className="w-full max-w-[500px] space-y-2 max-h-[300px] overflow-y-auto">
           {tasks.map((task, index) => (
             <li
               key={index}
