@@ -15,7 +15,8 @@ function App() {
 
   const addTask = () => {
     if (newTask.trim() !== "") {
-      setTasks([...tasks, newTask]);
+      // Добавляем задачу с параметром done
+      setTasks([...tasks, { text: newTask, done: false }]);
       setNewTask("");
     }
   };
@@ -32,13 +33,13 @@ function App() {
 
   const startEdit = (index, task) => {
     setEditIndex(index);
-    setEditText(task);
+    setEditText(task.text);
   };
 
   const saveEdit = (index) => {
     if (editText.trim() !== "") {
       const updatedTasks = tasks.map((task, i) =>
-        i === index ? editText : task
+        i === index ? { ...task, text: editText } : task
       );
       setTasks(updatedTasks);
       setEditIndex(null);
@@ -46,9 +47,10 @@ function App() {
     }
   };
 
-  const handleSaveEdit = (taskId, newText) => {
-    const updatedTasks = tasks.map((task, index) =>
-      index === parseInt(taskId) ? newText : task
+  // Переключение состояния задачи (выполнено/не выполнено)
+  const toggleDone = (index) => {
+    const updatedTasks = tasks.map((task, i) =>
+      i === index ? { ...task, done: !task.done } : task
     );
     setTasks(updatedTasks);
   };
@@ -101,12 +103,23 @@ function App() {
                   </div>
                 ) : (
                   <div className="flex-1 flex justify-between items-center">
-                    <Link
-                      to={`/task/${index}`}
-                      className="text-white break-words whitespace-normal overflow-hidden max-w-[200px]"
-                    >
-                      {task}
-                    </Link>
+                    <div className="flex items-center gap-2">
+                      {/* Чекбокс для отметки задачи как выполненной */}
+                      <input
+                        type="checkbox"
+                        checked={task.done}
+                        onChange={() => toggleDone(index)}
+                        className="cursor-pointer"
+                      />
+                      <Link
+                        to={`/task/${index}`}
+                        className={`text-white break-words whitespace-normal overflow-hidden max-w-[200px] ${
+                          task.done ? "line-through" : ""
+                        }`}
+                      >
+                        {task.text}
+                      </Link>
+                    </div>
                     <div className="flex gap-2">
                       <button
                         onClick={(e) => {
@@ -136,10 +149,7 @@ function App() {
       </div>
 
       <Routes>
-        <Route
-          path="/task/:taskId"
-          element={<TaskDetail tasks={tasks} onSaveEdit={handleSaveEdit} />}
-        />
+        <Route path="/task/:taskId" element={<TaskDetail tasks={tasks} />} />
       </Routes>
     </Router>
   );
