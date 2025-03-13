@@ -15,7 +15,6 @@ function App() {
 
   const addTask = () => {
     if (newTask.trim() !== "") {
-      // Добавляем задачу с параметром done
       setTasks([...tasks, { text: newTask, done: false }]);
       setNewTask("");
     }
@@ -47,7 +46,6 @@ function App() {
     }
   };
 
-  // Переключение состояния задачи (выполнено/не выполнено)
   const toggleDone = (index) => {
     const updatedTasks = tasks.map((task, i) =>
       i === index ? { ...task, done: !task.done } : task
@@ -104,7 +102,6 @@ function App() {
                 ) : (
                   <div className="flex-1 flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                      {/* Чекбокс для отметки задачи как выполненной */}
                       <input
                         type="checkbox"
                         checked={task.done}
